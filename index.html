@@ -1,0 +1,3528 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happy Birthday Bestie!</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Comic Sans MS", cursive, sans-serif;
+      }
+
+      body {
+        background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+        height: 100vh;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+      }
+
+      .container {
+        text-align: center;
+        z-index: 10;
+        padding: 2rem;
+        max-width: 800px;
+        background-color: rgba(255, 255, 255, 0.2);
+        border-radius: 20px;
+        backdrop-filter: blur(5px);
+        box-shadow: 0 8px 32px rgba(255, 105, 180, 0.3);
+        transition: all 0.5s ease;
+      }
+
+      .container:hover {
+        box-shadow: 0 8px 32px rgba(255, 105, 180, 0.5);
+      }
+
+      h1 {
+        font-size: 3.5rem;
+        color: #ff1493;
+        text-shadow: 2px 2px 8px rgba(255, 255, 255, 0.8);
+        margin-bottom: 1.5rem;
+        opacity: 0;
+        animation: bounce-in 1.5s forwards 0.5s;
+      }
+
+      .subtitle {
+        font-size: 1.8rem;
+        color: #8a2be2;
+        margin-bottom: 2rem;
+        text-shadow: 1px 1px 4px rgba(255, 255, 255, 0.6);
+        opacity: 0;
+      }
+
+      .next-button {
+        padding: 1rem 3rem;
+        font-size: 1.5rem;
+        background: linear-gradient(45deg, #ff1493, #8a2be2);
+        color: white;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(255, 20, 147, 0.5);
+        transition: all 0.3s ease;
+        opacity: 0;
+        animation: fade-in 1s forwards 3s;
+      }
+
+      .next-button:hover {
+        transform: scale(1.05) translateY(-5px);
+        box-shadow: 0 6px 20px rgba(255, 20, 147, 0.7);
+        background: linear-gradient(45deg, #8a2be2, #ff1493);
+      }
+
+      .audio-controls {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: rgba(255, 255, 255, 0.7);
+        padding: 10px;
+        border-radius: 50px;
+        display: flex;
+        align-items: center;
+        z-index: 100;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .audio-controls button {
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: #ff1493;
+        margin-right: 10px;
+        transition: all 0.3s ease;
+      }
+
+      .audio-controls button:hover {
+        transform: scale(1.2);
+        color: #8a2be2;
+      }
+
+      .audio-controls input {
+        width: 100px;
+      }
+
+      .confetti,
+      .balloon,
+      .heart,
+      .star {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        z-index: 1;
+        opacity: 0.8;
+        pointer-events: none;
+      }
+
+      .balloon {
+        width: 40px;
+        height: 50px;
+      }
+
+      .heart {
+        width: 25px;
+        height: 25px;
+      }
+
+      .star {
+        width: 15px;
+        height: 15px;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(0) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-20px) rotate(10deg);
+        }
+        100% {
+          transform: translateY(0) rotate(0deg);
+        }
+      }
+
+      @keyframes sway {
+        0% {
+          transform: translateX(0);
+        }
+        50% {
+          transform: translateX(20px);
+        }
+        100% {
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes sparkle {
+        0%,
+        100% {
+          opacity: 0.4;
+        }
+        50% {
+          opacity: 1;
+          filter: drop-shadow(0 0 5px white);
+        }
+      }
+
+      @keyframes bounce-in {
+        0% {
+          transform: scale(0);
+          opacity: 0;
+        }
+        60% {
+          transform: scale(1.1);
+          opacity: 1;
+        }
+        80% {
+          transform: scale(0.9);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      @keyframes fade-in {
+        0% {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes typewriter {
+        from {
+          width: 0;
+        }
+        to {
+          width: 100%;
+        }
+      }
+
+      .typewriter-container {
+        display: inline-block;
+        margin: 0 auto;
+        position: relative;
+        max-width: 100%;
+        overflow: hidden;
+        height: 2.5rem;
+      }
+
+      .typewriter-text {
+        position: relative;
+        white-space: nowrap;
+        overflow: hidden;
+        width: 0;
+        animation: typewriter 3s steps(50) forwards 1.5s;
+      }
+
+      .cursor {
+        position: absolute;
+        right: -5px;
+        width: 3px;
+        height: 100%;
+        background-color: #8a2be2;
+        animation: blink 0.8s infinite;
+      }
+
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0;
+        }
+      }
+
+      @media (max-width: 768px) {
+        h1 {
+          font-size: 2.5rem;
+        }
+        .subtitle {
+          font-size: 1.3rem;
+        }
+        .container {
+          width: 90%;
+          padding: 1.5rem;
+        }
+        .next-button {
+          padding: 0.8rem 2rem;
+          font-size: 1.2rem;
+        }
+        .audio-controls {
+          bottom: 10px;
+          right: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1
+        style="
+          text-shadow: rgb(255, 255, 255) 0px 0px 10px,
+            rgba(255, 255, 255, 0.8) 0px 0px 19.9998px,
+            rgba(255, 20, 147, 0.6) 0px 0px 29.9997px;
+        "
+      >
+        Happy Birthday, My Bestie! 🎉🎂
+      </h1>
+      <div class="typewriter-container">
+        <div class="subtitle typewriter-text">
+          Hey Bestie! Ready for your special surprise? Click to continue!
+          <span class="cursor"></span>
+        </div>
+      </div>
+      <button
+        class="next-button"
+        onclick="goToNextPage()"
+        fdprocessedid="ag52x"
+      >
+        Let's Go! ✨
+      </button>
+    </div>
+
+    <div class="audio-controls">
+      <button id="play-pause" fdprocessedid="zo17w">
+        <i class="play-icon">▶️</i>
+      </button>
+      <input type="range" id="volume" min="0" max="1" step="0.1" value="0.5" />
+    </div>
+
+    <audio id="birthday-song" loop="">
+      <source src="Kabhi Mein  Mein Kabhi Tum.mp3" type="audio/mp3" />
+      Your browser does not support the audio element.
+    </audio>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script>
+      // Play birthday song
+      const audio = document.getElementById("birthday-song");
+      const playPauseBtn = document.getElementById("play-pause");
+      const volumeControl = document.getElementById("volume");
+      let isPlaying = false;
+
+      // Set initial volume
+      audio.volume = volumeControl.value;
+
+      // Play audio when page loads but wait a bit
+      window.addEventListener("load", () => {
+        setTimeout(() => {
+          audio
+            .play()
+            .then(() => {
+              isPlaying = true;
+              playPauseBtn.innerHTML = '<i class="play-icon">⏸️</i>';
+            })
+            .catch((error) => {
+              console.log(
+                "Audio play failed due to autoplay restrictions:",
+                error
+              );
+            });
+        }, 1000);
+      });
+
+      // Play/Pause button
+      playPauseBtn.addEventListener("click", () => {
+        if (isPlaying) {
+          audio.pause();
+          playPauseBtn.innerHTML = '<i class="play-icon">▶️</i>';
+        } else {
+          audio.play();
+          playPauseBtn.innerHTML = '<i class="play-icon">⏸️</i>';
+        }
+        isPlaying = !isPlaying;
+      });
+
+      // Volume control
+      volumeControl.addEventListener("input", () => {
+        audio.volume = volumeControl.value;
+      });
+
+      // Function to go to next page
+      function goToNextPage() {
+        // Add a bounce effect before navigating
+        gsap.to(".next-button", {
+          scale: 1.2,
+          yoyo: true,
+          repeat: 1,
+          duration: 0.3,
+          onComplete: () => {
+            // Change this URL to your next page
+            window.location.href = "memorylane.html";
+
+            // For demonstration, we'll just show an alert
+          },
+        });
+      }
+
+      // Create confetti, balloons, hearts, and stars
+      function createFloatingElements() {
+        const colors = [
+          "#FF1493",
+          "#8A2BE2",
+          "#FFD700",
+          "#FF4500",
+          "#00BFFF",
+          "#32CD32",
+        ];
+        const elements = ["confetti", "balloon", "heart", "star"];
+        const confettiShapes = ["▲", "■", "●", "★", "♥", "♦", "✦", "✧"];
+
+        for (let i = 0; i < 100; i++) {
+          setTimeout(() => {
+            const element = document.createElement("div");
+
+            // Randomly pick an element type
+            const elementType =
+              elements[Math.floor(Math.random() * elements.length)];
+            element.className = elementType;
+
+            // Set random position
+            element.style.left = Math.random() * 100 + "vw";
+            element.style.top = -30 + "px";
+
+            // Set random color
+            const color = colors[Math.floor(Math.random() * colors.length)];
+
+            // Different styling based on element type
+            if (elementType === "confetti") {
+              const shape =
+                confettiShapes[
+                  Math.floor(Math.random() * confettiShapes.length)
+                ];
+              element.innerHTML = shape;
+              element.style.color = color;
+              element.style.fontSize = Math.random() * 20 + 10 + "px";
+              element.style.transform = `rotate(${Math.random() * 360}deg)`;
+            } else if (elementType === "balloon") {
+              element.innerHTML = "🎈";
+              element.style.fontSize = Math.random() * 30 + 20 + "px";
+              element.style.filter = `hue-rotate(${Math.random() * 360}deg)`;
+            } else if (elementType === "heart") {
+              element.innerHTML = "❤️";
+              element.style.fontSize = Math.random() * 20 + 10 + "px";
+              element.style.filter = `hue-rotate(${Math.random() * 360}deg)`;
+            } else if (elementType === "star") {
+              element.innerHTML = "✨";
+              element.style.fontSize = Math.random() * 15 + 10 + "px";
+            }
+
+            // Add to body
+            document.body.appendChild(element);
+
+            // Animate with GSAP
+            gsap.to(element, {
+              y: window.innerHeight + 100,
+              x: "+=" + (Math.random() * 200 - 100),
+              rotation: Math.random() * 360,
+              duration: Math.random() * 10 + 5,
+              ease: "power1.out",
+              onComplete: () => {
+                document.body.removeChild(element);
+              },
+            });
+
+            // Add some sparkle animation
+            if (Math.random() > 0.7) {
+              gsap.to(element, {
+                opacity: 0.5,
+                yoyo: true,
+                repeat: -1,
+                duration: 0.5,
+                ease: "sine.inOut",
+              });
+            }
+          }, i * 200); // Staggered start times
+        }
+      }
+
+      // Start floating elements on load
+      window.addEventListener("load", createFloatingElements);
+
+      // Create new elements periodically
+      setInterval(createFloatingElements, 5000);
+
+      // Add a subtle sparkle effect to the heading
+      gsap.to("h1", {
+        textShadow:
+          "0 0 10px rgba(255, 255, 255, 1), 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 20, 147, 0.6)",
+        repeat: -1,
+        yoyo: true,
+        duration: 2,
+      });
+
+      // Responsive adjustments
+      function handleResize() {
+        // Add responsive adjustments if needed
+      }
+
+      window.addEventListener("resize", handleResize);
+      handleResize();
+    </script>
+
+    <span id="PING_IFRAME_FORM_DETECTION" style="display: none"></span>
+    <div
+      class="balloon"
+      style="
+        left: 65.5468vw;
+        top: -30px;
+        font-size: 40.2654px;
+        filter: hue-rotate(355.216deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(25.6458px, 794.392px, 0px) rotate(132.135deg);
+      "
+    >
+      🎈
+    </div>
+    <div
+      class="balloon"
+      style="
+        left: 55.404vw;
+        top: -30px;
+        font-size: 35.123px;
+        filter: hue-rotate(6.13491deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-50.6587px, 794.793px, 0px) rotate(81.1939deg);
+      "
+    >
+      🎈
+    </div>
+    <div
+      class="balloon"
+      style="
+        left: 45.1524vw;
+        top: -30px;
+        font-size: 38.0674px;
+        filter: hue-rotate(289.866deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(61.553px, 789.369px, 0px) rotate(162.656deg);
+      "
+    >
+      🎈
+    </div>
+    <div
+      class="heart"
+      style="
+        left: 51.9887vw;
+        top: -30px;
+        font-size: 22.772px;
+        filter: hue-rotate(188.211deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(79.6332px, 787.06px, 0px) rotate(133.633deg);
+      "
+    >
+      ❤️
+    </div>
+    <div
+      class="star"
+      style="
+        left: 67.2373vw;
+        top: -30px;
+        font-size: 14.1931px;
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(74.835px, 794.966px, 0px) rotate(20.2467deg);
+      "
+    >
+      ✨
+    </div>
+    <div
+      class="balloon"
+      style="
+        left: 6.37575vw;
+        top: -30px;
+        font-size: 36.463px;
+        filter: hue-rotate(331.441deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(94.3705px, 782.291px, 0px) rotate(150.908deg);
+      "
+    >
+      🎈
+    </div>
+    <div
+      class="balloon"
+      style="
+        left: 86.1483vw;
+        top: -30px;
+        font-size: 33.6226px;
+        filter: hue-rotate(290.007deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-46.6866px, 782.971px, 0px) rotate(90.4301deg);
+      "
+    >
+      🎈
+    </div>
+    <div
+      class="confetti"
+      style="
+        left: 48.2696vw;
+        top: -30px;
+        color: rgb(255, 215, 0);
+        font-size: 25.7967px;
+        transform: translate3d(15.4335px, 794.827px, 0px) rotate(315.43deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        opacity: 0.7471;
+      "
+    >
+      ●
+    </div>
+    <div
+      class="balloon"
+      style="
+        left: 77.3332vw;
+        top: -30px;
+        font-size: 32.5007px;
+        filter: hue-rotate(344.038deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-20.1836px, 777.483px, 0px) rotate(36.5548deg);
+      "
+    >
+      🎈
+    </div>
+    <div
+      class="heart"
+      style="
+        left: 34.2572vw;
+        top: -30px;
+        font-size: 18.1365px;
+        filter: hue-rotate(313.214deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-19.2767px, 781.195px, 0px) rotate(67.6442deg);
+      "
+    >
+      ❤️
+    </div>
+    <div
+      class="balloon"
+      style="
+        left: 3.11928vw;
+        top: -30px;
+        font-size: 32.9801px;
+        filter: hue-rotate(250.026deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(33.728px, 793.7px, 0px) rotate(241.374deg);
+        opacity: 0.5181;
+      "
+    >
+      🎈
+    </div>
+    <div
+      class="balloon"
+      style="
+        left: 27.8401vw;
+        top: -30px;
+        font-size: 21.4297px;
+        filter: hue-rotate(138.566deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(58.4245px, 777.298px, 0px) rotate(154.976deg);
+        opacity: 0.5099;
+      "
+    >
+      🎈
+    </div>
+    <div
+      class="heart"
+      style="
+        left: 79.0865vw;
+        top: -30px;
+        font-size: 13.6993px;
+        filter: hue-rotate(125.796deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(36.7709px, 753.216px, 0px) rotate(62.396deg);
+        opacity: 0.5537;
+      "
+    >
+      ❤️
+    </div>
+    <div
+      class="balloon"
+      style="
+        left: 4.61816vw;
+        top: -30px;
+        font-size: 32.7303px;
+        filter: hue-rotate(146.141deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-16.1339px, 748.621px, 0px) rotate(222.782deg);
+      "
+    >
+      🎈
+    </div>
+    <div
+      class="confetti"
+      style="
+        left: 4.45816vw;
+        top: -30px;
+        color: rgb(255, 20, 147);
+        font-size: 13.5183px;
+        transform: translate3d(-3.6304px, 778.58px, 0px) rotate(90.5078deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+      "
+    >
+      ✧
+    </div>
+    <div
+      class="balloon"
+      style="
+        left: 20.9852vw;
+        top: -30px;
+        font-size: 30.9463px;
+        filter: hue-rotate(54.9466deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-86.5224px, 794.984px, 0px) rotate(77.6848deg);
+      "
+    >
+      🎈
+    </div>
+    <div
+      class="star"
+      style="
+        left: 56.8099vw;
+        top: -30px;
+        font-size: 18.9417px;
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-23.7934px, 789.825px, 0px) rotate(17.9337deg);
+        opacity: 0.796;
+      "
+    >
+      ✨
+    </div>
+    <div
+      class="heart"
+      style="
+        left: 35.6609vw;
+        top: -30px;
+        font-size: 21.4491px;
+        filter: hue-rotate(257.056deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(69.1762px, 772.047px, 0px) rotate(104.944deg);
+        opacity: 0.6632;
+      "
+    >
+      ❤️
+    </div>
+    <div
+      class="confetti"
+      style="
+        left: 67.4777vw;
+        top: -30px;
+        color: rgb(0, 191, 255);
+        font-size: 22.6831px;
+        transform: translate3d(13.0166px, 769.216px, 0px) rotate(144.815deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+      "
+    >
+      ★
+    </div>
+    <div
+      class="confetti"
+      style="
+        left: 42.3074vw;
+        top: -30px;
+        color: rgb(50, 205, 50);
+        font-size: 14.1974px;
+        transform: translate3d(47.4325px, 742.979px, 0px) rotate(40.4955deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+      "
+    >
+      ♥
+    </div>
+    <div
+      class="balloon"
+      style="
+        left: 97.8897vw;
+        top: -30px;
+        font-size: 36.6982px;
+        filter: hue-rotate(327.34deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-47.4483px, 739.406px, 0px) rotate(173.035deg);
+      "
+    >
+      🎈
+    </div>
+    <div
+      class="confetti"
+      style="
+        left: 27.3686vw;
+        top: -30px;
+        color: rgb(255, 69, 0);
+        font-size: 16.8323px;
+        transform: translate3d(-63.4599px, 777.536px, 0px) rotate(122.76deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+      "
+    >
+      ★
+    </div>
+    <div
+      class="star"
+      style="
+        left: 40.543vw;
+        top: -30px;
+        font-size: 12.1472px;
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(39.8891px, 737.571px, 0px) rotate(86.7764deg);
+      "
+    >
+      ✨
+    </div>
+    <div
+      class="confetti"
+      style="
+        left: 94.9775vw;
+        top: -30px;
+        color: rgb(138, 43, 226);
+        font-size: 15.6003px;
+        transform: translate3d(-49.9442px, 747.679px, 0px) rotate(-3.5143deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+      "
+    >
+      ♥
+    </div>
+    <div
+      class="heart"
+      style="
+        left: 23.9211vw;
+        top: -30px;
+        font-size: 24.1383px;
+        filter: hue-rotate(319.979deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-19.3301px, 790.58px, 0px) rotate(78.8722deg);
+      "
+    >
+      ❤️
+    </div>
+    <div
+      class="confetti"
+      style="
+        left: 67.4783vw;
+        top: -30px;
+        color: rgb(255, 69, 0);
+        font-size: 26.5653px;
+        transform: translate3d(40.7px, 755.633px, 0px) rotate(28.5305deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+      "
+    >
+      ♦
+    </div>
+    <div
+      class="balloon"
+      style="
+        left: 60.0607vw;
+        top: -30px;
+        font-size: 38.9451px;
+        filter: hue-rotate(269.081deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-56.9796px, 774.085px, 0px) rotate(224.054deg);
+      "
+    >
+      🎈
+    </div>
+    <div
+      class="confetti"
+      style="
+        left: 28.785vw;
+        top: -30px;
+        color: rgb(255, 69, 0);
+        font-size: 19.3759px;
+        transform: translate3d(-74.4213px, 792.645px, 0px) rotate(44.8401deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        opacity: 0.6781;
+      "
+    >
+      ♥
+    </div>
+    <div
+      class="star"
+      style="
+        left: 89.4243vw;
+        top: -30px;
+        font-size: 13.2694px;
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(64.8338px, 710.094px, 0px) rotate(19.6131deg);
+      "
+    >
+      ✨
+    </div>
+    <div
+      class="confetti"
+      style="
+        left: 61.0258vw;
+        top: -30px;
+        color: rgb(0, 191, 255);
+        font-size: 22.8683px;
+        transform: translate3d(-24.4424px, 793.129px, 0px) rotate(257.927deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+      "
+    >
+      ●
+    </div>
+    <div
+      class="heart"
+      style="
+        left: 11.7753vw;
+        top: -30px;
+        font-size: 22.2081px;
+        filter: hue-rotate(333.931deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-41.1003px, 691.215px, 0px) rotate(211.145deg);
+      "
+    >
+      ❤️
+    </div>
+    <div
+      class="confetti"
+      style="
+        left: 37.2575vw;
+        top: -30px;
+        color: rgb(0, 191, 255);
+        font-size: 16.9534px;
+        transform: translate3d(73.4697px, 719.287px, 0px) rotate(117.901deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+      "
+    >
+      ●
+    </div>
+    <div
+      class="balloon"
+      style="
+        left: 12.2546vw;
+        top: -30px;
+        font-size: 44.2885px;
+        filter: hue-rotate(356.383deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-87.6739px, 698.048px, 0px) rotate(90.8045deg);
+      "
+    >
+      🎈
+    </div>
+    <div
+      class="heart"
+      style="
+        left: 24.0124vw;
+        top: -30px;
+        font-size: 25.9935px;
+        filter: hue-rotate(234.264deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(20.8462px, 732.023px, 0px) rotate(146.045deg);
+      "
+    >
+      ❤️
+    </div>
+    <div
+      class="heart"
+      style="
+        left: 73.6536vw;
+        top: -30px;
+        font-size: 21.8828px;
+        filter: hue-rotate(248.65deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(25.4094px, 790.126px, 0px) rotate(254.809deg);
+        opacity: 0.7264;
+      "
+    >
+      ❤️
+    </div>
+    <div
+      class="star"
+      style="
+        left: 19.9421vw;
+        top: -30px;
+        font-size: 21.2526px;
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-3.9124px, 779.421px, 0px) rotate(100.732deg);
+      "
+    >
+      ✨
+    </div>
+    <div
+      class="balloon"
+      style="
+        left: 36.3769vw;
+        top: -30px;
+        font-size: 28.2674px;
+        filter: hue-rotate(354.552deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-49.389px, 727.925px, 0px) rotate(303.653deg);
+      "
+    >
+      🎈
+    </div>
+    <div
+      class="star"
+      style="
+        left: 5.8453vw;
+        top: -30px;
+        font-size: 18.7831px;
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(47.2759px, 733.41px, 0px) rotate(172.245deg);
+      "
+    >
+      ✨
+    </div>
+    <div
+      class="star"
+      style="
+        left: 54.2794vw;
+        top: -30px;
+        font-size: 16.4266px;
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-62.7407px, 757.072px, 0px) rotate(90.0284deg);
+        opacity: 0.6632;
+      "
+    >
+      ✨
+    </div>
+    <div
+      class="star"
+      style="
+        left: 94.9847vw;
+        top: -30px;
+        font-size: 12.3882px;
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-5.4635px, 729.579px, 0px) rotate(10.2621deg);
+      "
+    >
+      ✨
+    </div>
+    <div
+      class="heart"
+      style="
+        left: 21.3666vw;
+        top: -30px;
+        font-size: 26.7235px;
+        filter: hue-rotate(83.9751deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(75.4345px, 665.946px, 0px) rotate(242.676deg);
+      "
+    >
+      ❤️
+    </div>
+    <div
+      class="star"
+      style="
+        left: 80.0478vw;
+        top: -30px;
+        font-size: 23.8473px;
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-16.7679px, 703.466px, 0px) rotate(181.348deg);
+      "
+    >
+      ✨
+    </div>
+    <div
+      class="balloon"
+      style="
+        left: 91.7595vw;
+        top: -30px;
+        font-size: 22.8627px;
+        filter: hue-rotate(315.387deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-77.3629px, 779.736px, 0px) rotate(292.777deg);
+      "
+    >
+      🎈
+    </div>
+    <div
+      class="confetti"
+      style="
+        left: 87.1779vw;
+        top: -30px;
+        color: rgb(255, 20, 147);
+        font-size: 25.422px;
+        transform: translate3d(48.2954px, 766.573px, 0px) rotate(70.1621deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        opacity: 0.5054;
+      "
+    >
+      ✧
+    </div>
+    <div
+      class="balloon"
+      style="
+        left: 67.7485vw;
+        top: -30px;
+        font-size: 46.5494px;
+        filter: hue-rotate(23.7233deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(32.0655px, 684.09px, 0px) rotate(170.353deg);
+      "
+    >
+      🎈
+    </div>
+    <div
+      class="heart"
+      style="
+        left: 32.5823vw;
+        top: -30px;
+        font-size: 12.1412px;
+        filter: hue-rotate(272.089deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(22.9977px, 784.185px, 0px) rotate(266.958deg);
+      "
+    >
+      ❤️
+    </div>
+    <div
+      class="balloon"
+      style="
+        left: 16.2693vw;
+        top: -30px;
+        font-size: 20.8106px;
+        filter: hue-rotate(290.361deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-23.7173px, 771.333px, 0px) rotate(92.2155deg);
+      "
+    >
+      🎈
+    </div>
+    <div
+      class="star"
+      style="
+        left: 47.2597vw;
+        top: -30px;
+        font-size: 19.9575px;
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(55.8931px, 655.833px, 0px) rotate(60.5446deg);
+      "
+    >
+      ✨
+    </div>
+    <div
+      class="balloon"
+      style="
+        left: 1.26953vw;
+        top: -30px;
+        font-size: 27.8563px;
+        filter: hue-rotate(205.607deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(66.7362px, 659.566px, 0px) rotate(297.902deg);
+      "
+    >
+      🎈
+    </div>
+    <div
+      class="star"
+      style="
+        left: 5.67527vw;
+        top: -30px;
+        font-size: 15.502px;
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(14.3665px, 710.894px, 0px) rotate(79.9892deg);
+        opacity: 0.7223;
+      "
+    >
+      ✨
+    </div>
+    <div
+      class="balloon"
+      style="
+        left: 64.6873vw;
+        top: -30px;
+        font-size: 27.7454px;
+        filter: hue-rotate(103.062deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(6.3814px, 782.362px, 0px) rotate(25.9858deg);
+      "
+    >
+      🎈
+    </div>
+    <div
+      class="star"
+      style="
+        left: 46.3919vw;
+        top: -30px;
+        font-size: 10.5769px;
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(57.3758px, 759.373px, 0px) rotate(156.29deg);
+      "
+    >
+      ✨
+    </div>
+    <div
+      class="heart"
+      style="
+        left: 46.4662vw;
+        top: -30px;
+        font-size: 23.8177px;
+        filter: hue-rotate(158.113deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(37.7446px, 652.182px, 0px) rotate(127.037deg);
+      "
+    >
+      ❤️
+    </div>
+    <div
+      class="confetti"
+      style="
+        left: 0.260262vw;
+        top: -30px;
+        color: rgb(255, 20, 147);
+        font-size: 29.4823px;
+        transform: translate3d(-18.7336px, 759.045px, 0px) rotate(204.895deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+      "
+    >
+      ■
+    </div>
+    <div
+      class="heart"
+      style="
+        left: 95.4526vw;
+        top: -30px;
+        font-size: 27.0277px;
+        filter: hue-rotate(74.3257deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(0.551px, 750.694px, 0px) rotate(111.72deg);
+      "
+    >
+      ❤️
+    </div>
+    <div
+      class="heart"
+      style="
+        left: 15.0326vw;
+        top: -30px;
+        font-size: 26.8855px;
+        filter: hue-rotate(187.208deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-48.3795px, 768.155px, 0px) rotate(80.8213deg);
+      "
+    >
+      ❤️
+    </div>
+    <div
+      class="heart"
+      style="
+        left: 39.9162vw;
+        top: -30px;
+        font-size: 11.862px;
+        filter: hue-rotate(244.649deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(57.2312px, 639.627px, 0px) rotate(160.594deg);
+      "
+    >
+      ❤️
+    </div>
+    <div
+      class="balloon"
+      style="
+        left: 98.2797vw;
+        top: -30px;
+        font-size: 30.787px;
+        filter: hue-rotate(158.142deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-69.8362px, 627.665px, 0px) rotate(258.2deg);
+        opacity: 0.5123;
+      "
+    >
+      🎈
+    </div>
+    <div
+      class="balloon"
+      style="
+        left: 1.57902vw;
+        top: -30px;
+        font-size: 31.9368px;
+        filter: hue-rotate(82.3176deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(65.8935px, 794.565px, 0px) rotate(59.4374deg);
+      "
+    >
+      🎈
+    </div>
+    <div
+      class="balloon"
+      style="
+        left: 38.2007vw;
+        top: -30px;
+        font-size: 25.5004px;
+        filter: hue-rotate(39.8739deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-15.635px, 635.111px, 0px) rotate(53.1738deg);
+      "
+    >
+      🎈
+    </div>
+    <div
+      class="star"
+      style="
+        left: 45.0869vw;
+        top: -30px;
+        font-size: 11.4684px;
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(8.0204px, 606.333px, 0px) rotate(13.2243deg);
+      "
+    >
+      ✨
+    </div>
+    <div
+      class="confetti"
+      style="
+        left: 38.3866vw;
+        top: -30px;
+        color: rgb(255, 20, 147);
+        font-size: 15.2673px;
+        transform: translate3d(-62.2771px, 689.772px, 0px) rotate(205.857deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+      "
+    >
+      ▲
+    </div>
+    <div
+      class="balloon"
+      style="
+        left: 51.7479vw;
+        top: -30px;
+        font-size: 37.7519px;
+        filter: hue-rotate(70.8217deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(74.6281px, 610.01px, 0px) rotate(193.551deg);
+      "
+    >
+      🎈
+    </div>
+    <div
+      class="heart"
+      style="
+        left: 94.3692vw;
+        top: -30px;
+        font-size: 14.4399px;
+        filter: hue-rotate(332.836deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(66.1559px, 787.514px, 0px) rotate(259.495deg);
+        opacity: 0.7139;
+      "
+    >
+      ❤️
+    </div>
+    <div
+      class="confetti"
+      style="
+        left: 82.4604vw;
+        top: -30px;
+        color: rgb(50, 205, 50);
+        font-size: 20.6899px;
+        transform: translate3d(-59.3761px, 624.77px, 0px) rotate(277.889deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+      "
+    >
+      ♥
+    </div>
+    <div
+      class="balloon"
+      style="
+        left: 69.2337vw;
+        top: -30px;
+        font-size: 28.1108px;
+        filter: hue-rotate(4.23771deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(43.6742px, 704.962px, 0px) rotate(290.375deg);
+      "
+    >
+      🎈
+    </div>
+    <div
+      class="heart"
+      style="
+        left: 58.2949vw;
+        top: -30px;
+        font-size: 27.6204px;
+        filter: hue-rotate(50.222deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(11.772px, 698.103px, 0px) rotate(216.876deg);
+      "
+    >
+      ❤️
+    </div>
+    <div
+      class="balloon"
+      style="
+        left: 21.4435vw;
+        top: -30px;
+        font-size: 46.5334px;
+        filter: hue-rotate(242.143deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-30.2px, 662.015px, 0px) rotate(257.287deg);
+      "
+    >
+      🎈
+    </div>
+    <div
+      class="heart"
+      style="
+        left: 36.8221vw;
+        top: -30px;
+        font-size: 28.6686px;
+        filter: hue-rotate(177.442deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(0.7393px, 787.269px, 0px) rotate(58.4427deg);
+      "
+    >
+      ❤️
+    </div>
+    <div
+      class="heart"
+      style="
+        left: 70.293vw;
+        top: -30px;
+        font-size: 20.5426px;
+        filter: hue-rotate(109.836deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-69.1309px, 717.822px, 0px) rotate(246.451deg);
+      "
+    >
+      ❤️
+    </div>
+    <div
+      class="confetti"
+      style="
+        left: 15.1297vw;
+        top: -30px;
+        color: rgb(138, 43, 226);
+        font-size: 13.1039px;
+        transform: translate3d(31.6769px, 609.115px, 0px) rotate(158.496deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        opacity: 0.6632;
+      "
+    >
+      ♦
+    </div>
+    <div
+      class="confetti"
+      style="
+        left: 29.4722vw;
+        top: -30px;
+        color: rgb(255, 20, 147);
+        font-size: 13.0445px;
+        transform: translate3d(-68.5166px, 780.194px, 0px) rotate(336.076deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        opacity: 0.6632;
+      "
+    >
+      ●
+    </div>
+    <div
+      class="star"
+      style="
+        left: 49.3149vw;
+        top: -30px;
+        font-size: 16.8602px;
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(70.5196px, 761.66px, 0px) rotate(251.541deg);
+      "
+    >
+      ✨
+    </div>
+    <div
+      class="balloon"
+      style="
+        left: 48.4438vw;
+        top: -30px;
+        font-size: 31.9617px;
+        filter: hue-rotate(186.898deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(26.7384px, 578.614px, 0px) rotate(134.792deg);
+      "
+    >
+      🎈
+    </div>
+    <div
+      class="heart"
+      style="
+        left: 25.6385vw;
+        top: -30px;
+        font-size: 21.6133px;
+        filter: hue-rotate(61.8082deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(24.5084px, 578.004px, 0px) rotate(179.983deg);
+      "
+    >
+      ❤️
+    </div>
+    <div
+      class="confetti"
+      style="
+        left: 17.4942vw;
+        top: -30px;
+        color: rgb(50, 205, 50);
+        font-size: 24.9012px;
+        transform: translate3d(9.8681px, 689.046px, 0px) rotate(136.272deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+      "
+    >
+      ✦
+    </div>
+    <div
+      class="balloon"
+      style="
+        left: 89.1829vw;
+        top: -30px;
+        font-size: 28.1737px;
+        filter: hue-rotate(96.4532deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-28.5231px, 596.352px, 0px) rotate(156.717deg);
+        opacity: 0.5123;
+      "
+    >
+      🎈
+    </div>
+    <div
+      class="heart"
+      style="
+        left: 77.0949vw;
+        top: -30px;
+        font-size: 25.1446px;
+        filter: hue-rotate(262.911deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-11.1986px, 790.054px, 0px) rotate(168.486deg);
+        opacity: 0.542;
+      "
+    >
+      ❤️
+    </div>
+    <div
+      class="star"
+      style="
+        left: 41.2323vw;
+        top: -30px;
+        font-size: 24.431px;
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-30.5676px, 559.229px, 0px) rotate(208.835deg);
+        opacity: 0.542;
+      "
+    >
+      ✨
+    </div>
+    <div
+      class="star"
+      style="
+        left: 35.4vw;
+        top: -30px;
+        font-size: 18.165px;
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-4.0754px, 616.907px, 0px) rotate(57.8741deg);
+      "
+    >
+      ✨
+    </div>
+    <div
+      class="star"
+      style="
+        left: 97.6737vw;
+        top: -30px;
+        font-size: 10.3202px;
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(17.7271px, 694.437px, 0px) rotate(126.406deg);
+        opacity: 0.7272;
+      "
+    >
+      ✨
+    </div>
+    <div
+      class="star"
+      style="
+        left: 54.4116vw;
+        top: -30px;
+        font-size: 24.2595px;
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-70.2199px, 706.664px, 0px) rotate(42.9397deg);
+      "
+    >
+      ✨
+    </div>
+    <div
+      class="heart"
+      style="
+        left: 1.40055vw;
+        top: -30px;
+        font-size: 21.0702px;
+        filter: hue-rotate(355.376deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-35.5056px, 724.99px, 0px) rotate(87.5646deg);
+        opacity: 0.7272;
+      "
+    >
+      ❤️
+    </div>
+    <div
+      class="star"
+      style="
+        left: 57.9261vw;
+        top: -30px;
+        font-size: 12.5425px;
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-52.3981px, 677.933px, 0px) rotate(214.284deg);
+      "
+    >
+      ✨
+    </div>
+    <div
+      class="balloon"
+      style="
+        left: 0.45226vw;
+        top: -30px;
+        font-size: 37.4518px;
+        filter: hue-rotate(97.4873deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-63.3309px, 570.95px, 0px) rotate(170.322deg);
+      "
+    >
+      🎈
+    </div>
+    <div
+      class="star"
+      style="
+        left: 23.7415vw;
+        top: -30px;
+        font-size: 16.3135px;
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-24.1676px, 673.705px, 0px) rotate(298.149deg);
+      "
+    >
+      ✨
+    </div>
+    <div
+      class="heart"
+      style="
+        left: 67.0174vw;
+        top: -30px;
+        font-size: 13.5885px;
+        filter: hue-rotate(116.526deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(62.7188px, 554.342px, 0px) rotate(58.1412deg);
+      "
+    >
+      ❤️
+    </div>
+    <div
+      class="confetti"
+      style="
+        left: 72.583vw;
+        top: -30px;
+        color: rgb(50, 205, 50);
+        font-size: 11.7078px;
+        transform: translate3d(52.726px, 614.382px, 0px) rotate(57.8478deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+      "
+    >
+      ✦
+    </div>
+    <div
+      class="balloon"
+      style="
+        left: 38.5124vw;
+        top: -30px;
+        font-size: 49.9038px;
+        filter: hue-rotate(229.901deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-67.2179px, 681.101px, 0px) rotate(47.2284deg);
+      "
+    >
+      🎈
+    </div>
+    <div
+      class="heart"
+      style="
+        left: 42.4963vw;
+        top: -30px;
+        font-size: 27.1161px;
+        filter: hue-rotate(318.012deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(34.425px, 793.012px, 0px) rotate(25.7518deg);
+      "
+    >
+      ❤️
+    </div>
+    <div
+      class="confetti"
+      style="
+        left: 44.1378vw;
+        top: -30px;
+        color: rgb(255, 20, 147);
+        font-size: 11.9414px;
+        transform: translate3d(-50.0574px, 621.762px, 0px) rotate(93.4149deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        opacity: 0.6519;
+      "
+    >
+      ♥
+    </div>
+    <div
+      class="balloon"
+      style="
+        left: 0.432359vw;
+        top: -30px;
+        font-size: 26.3823px;
+        filter: hue-rotate(166.805deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(69.4059px, 767.391px, 0px) rotate(292.421deg);
+      "
+    >
+      🎈
+    </div>
+    <div
+      class="balloon"
+      style="
+        left: 21.6375vw;
+        top: -30px;
+        font-size: 35.1193px;
+        filter: hue-rotate(66.7637deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(36.9415px, 609.235px, 0px) rotate(127.32deg);
+        opacity: 0.5109;
+      "
+    >
+      🎈
+    </div>
+    <div
+      class="confetti"
+      style="
+        left: 11.1967vw;
+        top: -30px;
+        color: rgb(255, 20, 147);
+        font-size: 29.2181px;
+        transform: translate3d(-48.144px, 485.745px, 0px) rotate(121.807deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        opacity: 0.5109;
+      "
+    >
+      ✦
+    </div>
+    <div
+      class="star"
+      style="
+        left: 48.2379vw;
+        top: -30px;
+        font-size: 19.478px;
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(50.1408px, 483.013px, 0px) rotate(190.989deg);
+      "
+    >
+      ✨
+    </div>
+    <div
+      class="confetti"
+      style="
+        left: 41.8769vw;
+        top: -30px;
+        color: rgb(255, 20, 147);
+        font-size: 11.6721px;
+        transform: translate3d(83.4923px, 693.715px, 0px) rotate(91.93deg)
+          skew(-0.000366714deg, 0deg) scale(1, 1.00001);
+        translate: none;
+        rotate: none;
+        scale: none;
+      "
+    >
+      ●
+    </div>
+    <div
+      class="confetti"
+      style="
+        left: 23.1224vw;
+        top: -30px;
+        color: rgb(255, 69, 0);
+        font-size: 24.7735px;
+        transform: translate3d(-6.0897px, 531.377px, 0px) rotate(213.335deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+      "
+    >
+      ♥
+    </div>
+    <div
+      class="star"
+      style="
+        left: 41.0453vw;
+        top: -30px;
+        font-size: 19.8744px;
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-56.4461px, 770.719px, 0px) rotate(115.091deg);
+        opacity: 0.5332;
+      "
+    >
+      ✨
+    </div>
+    <div
+      class="confetti"
+      style="
+        left: 43.2058vw;
+        top: -30px;
+        color: rgb(255, 215, 0);
+        font-size: 28.7095px;
+        transform: translate3d(-20.6994px, 721.515px, 0px) rotate(275.99deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+      "
+    >
+      ★
+    </div>
+    <div
+      class="heart"
+      style="
+        left: 40.6037vw;
+        top: -30px;
+        font-size: 15.423px;
+        filter: hue-rotate(115.089deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(61.2913px, 512.492px, 0px) rotate(189.788deg);
+        opacity: 0.713;
+      "
+    >
+      ❤️
+    </div>
+    <div
+      class="heart"
+      style="
+        left: 16.4954vw;
+        top: -30px;
+        font-size: 13.1565px;
+        filter: hue-rotate(179.406deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-78.3068px, 640.053px, 0px) rotate(249.862deg);
+      "
+    >
+      ❤️
+    </div>
+    <div
+      class="balloon"
+      style="
+        left: 37.3487vw;
+        top: -30px;
+        font-size: 25.8877px;
+        filter: hue-rotate(209.259deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(30.5068px, 467.997px, 0px) rotate(186.81deg);
+      "
+    >
+      🎈
+    </div>
+    <div
+      class="star"
+      style="
+        left: 1.79018vw;
+        top: -30px;
+        font-size: 10.2814px;
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(21.7199px, 478.423px, 0px) rotate(177.734deg);
+      "
+    >
+      ✨
+    </div>
+    <div
+      class="confetti"
+      style="
+        left: 51.665vw;
+        top: -30px;
+        color: rgb(138, 43, 226);
+        font-size: 17.7199px;
+        transform: translate3d(-36.4117px, 785.321px, 0px) rotate(298.775deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        opacity: 0.7983;
+      "
+    >
+      ■
+    </div>
+    <div
+      class="star"
+      style="
+        left: 85.0833vw;
+        top: -30px;
+        font-size: 17.6374px;
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-19.3727px, 596.949px, 0px) rotate(258.292deg);
+      "
+    >
+      ✨
+    </div>
+    <div
+      class="confetti"
+      style="
+        left: 73.5075vw;
+        top: -30px;
+        color: rgb(50, 205, 50);
+        font-size: 18.5229px;
+        transform: translate3d(21.0322px, 499.727px, 0px) rotate(191.88deg)
+          skew(-0.000192926deg, 0deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+      "
+    >
+      ▲
+    </div>
+    <div
+      class="confetti"
+      style="
+        left: 41.9685vw;
+        top: -30px;
+        color: rgb(50, 205, 50);
+        font-size: 10.4715px;
+        transform: translate3d(-35.9247px, 442.8px, 0px) rotate(162.821deg)
+          scale(0.99999, 0.99999);
+        translate: none;
+        rotate: none;
+        scale: none;
+      "
+    >
+      ✧
+    </div>
+    <div
+      class="heart"
+      style="
+        left: 62.0926vw;
+        top: -30px;
+        font-size: 23.1833px;
+        filter: hue-rotate(186.595deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(12.9896px, 690.968px, 0px) rotate(71.9691deg);
+      "
+    >
+      ❤️
+    </div>
+    <div
+      class="balloon"
+      style="
+        left: 44.032vw;
+        top: -30px;
+        font-size: 24.7224px;
+        filter: hue-rotate(308.442deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-75.6124px, 653.353px, 0px) rotate(4.6173deg);
+      "
+    >
+      🎈
+    </div>
+    <div
+      class="heart"
+      style="
+        left: 40.1544vw;
+        top: -30px;
+        font-size: 18.6684px;
+        filter: hue-rotate(7.13496deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(26.7191px, 510.815px, 0px) rotate(111.631deg);
+      "
+    >
+      ❤️
+    </div>
+    <div
+      class="confetti"
+      style="
+        left: 55.6291vw;
+        top: -30px;
+        color: rgb(50, 205, 50);
+        font-size: 17.7949px;
+        transform: translate3d(-1.0272px, 501.016px, 0px) rotate(175.022deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+      "
+    >
+      ■
+    </div>
+    <div
+      class="star"
+      style="
+        left: 71.2988vw;
+        top: -30px;
+        font-size: 16.195px;
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(50.7438px, 743.587px, 0px) rotate(173.486deg);
+      "
+    >
+      ✨
+    </div>
+    <div
+      class="balloon"
+      style="
+        left: 20.0278vw;
+        top: -30px;
+        font-size: 30.5401px;
+        filter: hue-rotate(327.029deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(39.8154px, 417.469px, 0px) rotate(104.776deg);
+      "
+    >
+      🎈
+    </div>
+    <div
+      class="star"
+      style="
+        left: 92.4218vw;
+        top: -30px;
+        font-size: 12.114px;
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-7.0939px, 438.353px, 0px) rotate(62.3449deg);
+      "
+    >
+      ✨
+    </div>
+    <div
+      class="star"
+      style="
+        left: 76.4015vw;
+        top: -30px;
+        font-size: 13.699px;
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(25.331px, 555.1px, 0px) rotate(250.902deg);
+      "
+    >
+      ✨
+    </div>
+    <div
+      class="confetti"
+      style="
+        left: 66.1822vw;
+        top: -30px;
+        color: rgb(255, 215, 0);
+        font-size: 20.0362px;
+        transform: translate3d(-89.058px, 777.64px, 0px) rotate(31.0409deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+      "
+    >
+      ★
+    </div>
+    <div
+      class="confetti"
+      style="
+        left: 12.7847vw;
+        top: -30px;
+        color: rgb(50, 205, 50);
+        font-size: 27.4073px;
+        transform: translate3d(13.9665px, 547.59px, 0px) rotate(91.8323deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        opacity: 0.5537;
+      "
+    >
+      ♥
+    </div>
+    <div
+      class="star"
+      style="
+        left: 26.0662vw;
+        top: -30px;
+        font-size: 13.3897px;
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(34.8936px, 570.63px, 0px) rotate(250.971deg);
+      "
+    >
+      ✨
+    </div>
+    <div
+      class="heart"
+      style="
+        left: 22.4159vw;
+        top: -30px;
+        font-size: 28.3591px;
+        filter: hue-rotate(329.994deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(69.7697px, 776.666px, 0px) rotate(17.0672deg);
+      "
+    >
+      ❤️
+    </div>
+    <div
+      class="heart"
+      style="
+        left: 3.067vw;
+        top: -30px;
+        font-size: 29.9903px;
+        filter: hue-rotate(30.0658deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(36.0659px, 479.137px, 0px) rotate(63deg);
+      "
+    >
+      ❤️
+    </div>
+    <div
+      class="balloon"
+      style="
+        left: 77.0368vw;
+        top: -30px;
+        font-size: 37.4446px;
+        filter: hue-rotate(74.3327deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-56.501px, 597.679px, 0px) rotate(122.459deg);
+      "
+    >
+      🎈
+    </div>
+    <div
+      class="balloon"
+      style="
+        left: 95.155vw;
+        top: -30px;
+        font-size: 23.4704px;
+        filter: hue-rotate(258.922deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(44.5065px, 492.079px, 0px) rotate(30.7766deg);
+      "
+    >
+      🎈
+    </div>
+    <div
+      class="star"
+      style="
+        left: 11.8792vw;
+        top: -30px;
+        font-size: 15.5196px;
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-53.1377px, 653.611px, 0px) rotate(222.545deg);
+        opacity: 0.7492;
+      "
+    >
+      ✨
+    </div>
+    <div
+      class="star"
+      style="
+        left: 15.9091vw;
+        top: -30px;
+        font-size: 12.4586px;
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-78.2927px, 670.672px, 0px) rotate(198.114deg);
+        opacity: 0.7972;
+      "
+    >
+      ✨
+    </div>
+    <div
+      class="heart"
+      style="
+        left: 81.8331vw;
+        top: -30px;
+        font-size: 20.1423px;
+        filter: hue-rotate(16.4611deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-2.0448px, 727.126px, 0px) rotate(311.675deg);
+        opacity: 0.7972;
+      "
+    >
+      ❤️
+    </div>
+    <div
+      class="heart"
+      style="
+        left: 3.32455vw;
+        top: -30px;
+        font-size: 14.2237px;
+        filter: hue-rotate(33.5038deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(40.8943px, 436.975px, 0px) rotate(190.458deg);
+      "
+    >
+      ❤️
+    </div>
+    <div
+      class="heart"
+      style="
+        left: 31.1636vw;
+        top: -30px;
+        font-size: 25.5813px;
+        filter: hue-rotate(9.4245deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-47.8914px, 532.634px, 0px) rotate(39.5337deg);
+      "
+    >
+      ❤️
+    </div>
+    <div
+      class="heart"
+      style="
+        left: 4.39117vw;
+        top: -30px;
+        font-size: 28.2995px;
+        filter: hue-rotate(55.2485deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(25.0716px, 352.387px, 0px) rotate(23.6414deg);
+        opacity: 0.6575;
+      "
+    >
+      ❤️
+    </div>
+    <div
+      class="star"
+      style="
+        left: 96.2762vw;
+        top: -30px;
+        font-size: 24.0509px;
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-12.432px, 559.665px, 0px) rotate(128.938deg);
+      "
+    >
+      ✨
+    </div>
+    <div
+      class="star"
+      style="
+        left: 95.409vw;
+        top: -30px;
+        font-size: 21.5564px;
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-46.6459px, 488.022px, 0px) rotate(38.8195deg);
+      "
+    >
+      ✨
+    </div>
+    <div
+      class="heart"
+      style="
+        left: 56.8076vw;
+        top: -30px;
+        font-size: 10.5052px;
+        filter: hue-rotate(343.348deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-24.6876px, 348.966px, 0px) rotate(92.5892deg);
+      "
+    >
+      ❤️
+    </div>
+    <div
+      class="heart"
+      style="
+        left: 50.5323vw;
+        top: -30px;
+        font-size: 26.119px;
+        filter: hue-rotate(136.094deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-18.3142px, 485.717px, 0px) rotate(188.293deg);
+      "
+    >
+      ❤️
+    </div>
+    <div
+      class="heart"
+      style="
+        left: 48.8573vw;
+        top: -30px;
+        font-size: 20.3869px;
+        filter: hue-rotate(76.7043deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(15.5394px, 352.587px, 0px) rotate(34.1062deg);
+      "
+    >
+      ❤️
+    </div>
+    <div
+      class="balloon"
+      style="
+        left: 83.2722vw;
+        top: -30px;
+        font-size: 44.0297px;
+        filter: hue-rotate(33.4027deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-7.8213px, 473.863px, 0px) rotate(200.806deg);
+      "
+    >
+      🎈
+    </div>
+    <div
+      class="balloon"
+      style="
+        left: 79.9024vw;
+        top: -30px;
+        font-size: 31.8391px;
+        filter: hue-rotate(69.2725deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-55.7125px, 691.572px, 0px) rotate(39.7515deg);
+      "
+    >
+      🎈
+    </div>
+    <div
+      class="star"
+      style="
+        left: 57.6844vw;
+        top: -30px;
+        font-size: 16.7093px;
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(36.3615px, 368.11px, 0px) rotate(110.778deg);
+      "
+    >
+      ✨
+    </div>
+    <div
+      class="confetti"
+      style="
+        left: 47.0373vw;
+        top: -30px;
+        color: rgb(138, 43, 226);
+        font-size: 22.7909px;
+        transform: translate3d(16.5587px, 370.858px, 0px) rotate(93.3171deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+      "
+    >
+      ★
+    </div>
+    <div
+      class="balloon"
+      style="
+        left: 68.392vw;
+        top: -30px;
+        font-size: 43.866px;
+        filter: hue-rotate(333.412deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-82.5064px, 702.764px, 0px) rotate(128.039deg);
+        opacity: 0.5433;
+      "
+    >
+      🎈
+    </div>
+    <div
+      class="balloon"
+      style="
+        left: 38.4786vw;
+        top: -30px;
+        font-size: 24.9479px;
+        filter: hue-rotate(317.288deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(2.095px, 511.128px, 0px) rotate(28.6868deg);
+      "
+    >
+      🎈
+    </div>
+    <div
+      class="star"
+      style="
+        left: 49.7461vw;
+        top: -30px;
+        font-size: 16.0915px;
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-29.2729px, 535.811px, 0px) rotate(200.048deg);
+      "
+    >
+      ✨
+    </div>
+    <div
+      class="star"
+      style="
+        left: 77.8081vw;
+        top: -30px;
+        font-size: 16.0913px;
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-13.2572px, 449.104px, 0px) rotate(185.831deg);
+      "
+    >
+      ✨
+    </div>
+    <div
+      class="confetti"
+      style="
+        left: 12.7965vw;
+        top: -30px;
+        color: rgb(0, 191, 255);
+        font-size: 16.9246px;
+        transform: translate3d(28.2337px, 309.35px, 0px) rotate(104.414deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+      "
+    >
+      ★
+    </div>
+    <div
+      class="balloon"
+      style="
+        left: 85.6011vw;
+        top: -30px;
+        font-size: 44.0476px;
+        filter: hue-rotate(232.582deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-36.3577px, 401.436px, 0px) rotate(122.076deg);
+      "
+    >
+      🎈
+    </div>
+    <div
+      class="heart"
+      style="
+        left: 8.5038vw;
+        top: -30px;
+        font-size: 28.1732px;
+        filter: hue-rotate(137.015deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-0.1288px, 533.03px, 0px) rotate(60.4346deg);
+      "
+    >
+      ❤️
+    </div>
+    <div
+      class="star"
+      style="
+        left: 50.9121vw;
+        top: -30px;
+        font-size: 16.7798px;
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-2.8965px, 421.582px, 0px) rotate(37.6797deg);
+      "
+    >
+      ✨
+    </div>
+    <div
+      class="balloon"
+      style="
+        left: 24.0008vw;
+        top: -30px;
+        font-size: 39.727px;
+        filter: hue-rotate(260.17deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(21.9606px, 316.008px, 0px) rotate(50.6795deg);
+      "
+    >
+      🎈
+    </div>
+    <div
+      class="balloon"
+      style="
+        left: 82.3619vw;
+        top: -30px;
+        font-size: 27.8329px;
+        filter: hue-rotate(5.59427deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-41.7957px, 402.047px, 0px) rotate(54.4958deg);
+      "
+    >
+      🎈
+    </div>
+    <div
+      class="heart"
+      style="
+        left: 97.6518vw;
+        top: -30px;
+        font-size: 11.8779px;
+        filter: hue-rotate(146.7deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(52.778px, 454.798px, 0px) rotate(145.398deg);
+      "
+    >
+      ❤️
+    </div>
+    <div
+      class="star"
+      style="
+        left: 30.6974vw;
+        top: -30px;
+        font-size: 11.4801px;
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(44.9833px, 436.464px, 0px) rotate(47.9719deg);
+        opacity: 0.6735;
+      "
+    >
+      ✨
+    </div>
+    <div
+      class="balloon"
+      style="
+        left: 77.5216vw;
+        top: -30px;
+        font-size: 33.1953px;
+        filter: hue-rotate(35.3464deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(34.0748px, 364.997px, 0px) rotate(121.058deg);
+      "
+    >
+      🎈
+    </div>
+    <div
+      class="balloon"
+      style="
+        left: 67.0479vw;
+        top: -30px;
+        font-size: 40.9707px;
+        filter: hue-rotate(89.9949deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-50.0643px, 606.54px, 0px) rotate(272.786deg);
+        opacity: 0.6547;
+      "
+    >
+      🎈
+    </div>
+    <div
+      class="star"
+      style="
+        left: 85.9891vw;
+        top: -30px;
+        font-size: 19.2472px;
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-16.9888px, 492.254px, 0px) rotate(137.498deg);
+      "
+    >
+      ✨
+    </div>
+    <div
+      class="heart"
+      style="
+        left: 47.2365vw;
+        top: -30px;
+        font-size: 20.6405px;
+        filter: hue-rotate(47.6907deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(29.5577px, 308.796px, 0px) rotate(12.2927deg);
+      "
+    >
+      ❤️
+    </div>
+    <div
+      class="balloon"
+      style="
+        left: 75.6899vw;
+        top: -30px;
+        font-size: 38.6763px;
+        filter: hue-rotate(91.7423deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(39.3583px, 374.524px, 0px) rotate(40.6905deg);
+        opacity: 0.5123;
+      "
+    >
+      🎈
+    </div>
+    <div
+      class="confetti"
+      style="
+        left: 79.4989vw;
+        top: -30px;
+        color: rgb(255, 69, 0);
+        font-size: 27.0821px;
+        transform: translate3d(38.0211px, 573.009px, 0px) rotate(223.66deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+      "
+    >
+      ✧
+    </div>
+    <div
+      class="confetti"
+      style="
+        left: 5.69651vw;
+        top: -30px;
+        color: rgb(50, 205, 50);
+        font-size: 23.7897px;
+        transform: translate3d(22.6222px, 268.695px, 0px) rotate(-40.6032deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+      "
+    >
+      ✧
+    </div>
+    <div
+      class="balloon"
+      style="
+        left: 71.3249vw;
+        top: -30px;
+        font-size: 48.6859px;
+        filter: hue-rotate(22.054deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(48.7895px, 492.987px, 0px) rotate(108.873deg);
+        opacity: 0.5501;
+      "
+    >
+      🎈
+    </div>
+    <div
+      class="star"
+      style="
+        left: 15.7622vw;
+        top: -30px;
+        font-size: 14.1512px;
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(29.5551px, 271.809px, 0px) rotate(1.5112deg);
+      "
+    >
+      ✨
+    </div>
+    <div
+      class="balloon"
+      style="
+        left: 22.4979vw;
+        top: -30px;
+        font-size: 48.2318px;
+        filter: hue-rotate(223.419deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(2.9649px, 288.555px, 0px) rotate(99.5943deg);
+      "
+    >
+      🎈
+    </div>
+    <div
+      class="confetti"
+      style="
+        left: 30.8077vw;
+        top: -30px;
+        color: rgb(50, 205, 50);
+        font-size: 22.0319px;
+        transform: translate3d(22.8975px, 376.342px, 0px) rotate(13.1285deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        opacity: 0.7139;
+      "
+    >
+      ♦
+    </div>
+    <div
+      class="star"
+      style="
+        left: 63.4808vw;
+        top: -30px;
+        font-size: 11.032px;
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(15.1996px, 216.295px, 0px) rotate(63.1848deg);
+      "
+    >
+      ✨
+    </div>
+    <div
+      class="star"
+      style="
+        left: 53.1236vw;
+        top: -30px;
+        font-size: 17.8135px;
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(37.833px, 378.523px, 0px) rotate(86.0745deg);
+      "
+    >
+      ✨
+    </div>
+    <div
+      class="heart"
+      style="
+        left: 3.86702vw;
+        top: -30px;
+        font-size: 15.2801px;
+        filter: hue-rotate(328.001deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(43.2383px, 496.029px, 0px) rotate(95.6307deg);
+      "
+    >
+      ❤️
+    </div>
+    <div
+      class="confetti"
+      style="
+        left: 8.08807vw;
+        top: -30px;
+        color: rgb(50, 205, 50);
+        font-size: 28.7751px;
+        transform: translate3d(32.7911px, 322.785px, 0px) rotate(53.9221deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        opacity: 0.799;
+      "
+    >
+      ✧
+    </div>
+    <div
+      class="confetti"
+      style="
+        left: 57.7562vw;
+        top: -30px;
+        color: rgb(255, 20, 147);
+        font-size: 15.4141px;
+        transform: translate3d(-13.3743px, 229.748px, 0px) rotate(118.251deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+      "
+    >
+      ♥
+    </div>
+    <div
+      class="confetti"
+      style="
+        left: 17.5638vw;
+        top: -30px;
+        color: rgb(255, 215, 0);
+        font-size: 27.5815px;
+        transform: translate3d(17.7549px, 237.112px, 0px) rotate(149.574deg)
+          scale(0.99999, 0.99999);
+        translate: none;
+        rotate: none;
+        scale: none;
+      "
+    >
+      ♥
+    </div>
+    <div
+      class="balloon"
+      style="
+        left: 89.6084vw;
+        top: -30px;
+        font-size: 39.398px;
+        filter: hue-rotate(266.373deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(20.3034px, 237.021px, 0px) rotate(90.4458deg);
+      "
+    >
+      🎈
+    </div>
+    <div
+      class="confetti"
+      style="
+        left: 54.4849vw;
+        top: -30px;
+        color: rgb(0, 191, 255);
+        font-size: 11.1122px;
+        transform: translate3d(28.8142px, 318.793px, 0px) rotate(126.437deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        opacity: 0.6651;
+      "
+    >
+      ▲
+    </div>
+    <div
+      class="confetti"
+      style="
+        left: 29.8932vw;
+        top: -30px;
+        color: rgb(255, 69, 0);
+        font-size: 22.7946px;
+        transform: translate3d(1.5294px, 272.852px, 0px) rotate(81.4312deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+      "
+    >
+      ●
+    </div>
+    <div
+      class="heart"
+      style="
+        left: 57.977vw;
+        top: -30px;
+        font-size: 16.4217px;
+        filter: hue-rotate(325.667deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(12.0052px, 272.614px, 0px) rotate(16.8236deg);
+      "
+    >
+      ❤️
+    </div>
+    <div
+      class="star"
+      style="
+        left: 92.5005vw;
+        top: -30px;
+        font-size: 14.435px;
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(4.2699px, 199.08px, 0px) rotate(28.5032deg);
+      "
+    >
+      ✨
+    </div>
+    <div
+      class="balloon"
+      style="
+        left: 6.28245vw;
+        top: -30px;
+        font-size: 34.3006px;
+        filter: hue-rotate(272.075deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-15.6245px, 245.674px, 0px) rotate(34.1965deg);
+        opacity: 0.5186;
+      "
+    >
+      🎈
+    </div>
+    <div
+      class="heart"
+      style="
+        left: 61.299vw;
+        top: -30px;
+        font-size: 20.8337px;
+        filter: hue-rotate(138.708deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(11.8248px, 205.791px, 0px) rotate(52.1316deg);
+        opacity: 0.512;
+      "
+    >
+      ❤️
+    </div>
+    <div
+      class="balloon"
+      style="
+        left: 58.7792vw;
+        top: -30px;
+        font-size: 46.6321px;
+        filter: hue-rotate(321.907deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-18.7104px, 163.623px, 0px) rotate(9.7557deg);
+      "
+    >
+      🎈
+    </div>
+    <div
+      class="balloon"
+      style="
+        left: 10.8541vw;
+        top: -30px;
+        font-size: 23.5758px;
+        filter: hue-rotate(163.192deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(17.6988px, 332.939px, 0px) rotate(33.5314deg);
+        opacity: 0.512;
+      "
+    >
+      🎈
+    </div>
+    <div
+      class="heart"
+      style="
+        left: 9.19658vw;
+        top: -30px;
+        font-size: 25.3982px;
+        filter: hue-rotate(0.680155deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-6.2666px, 317.852px, 0px) rotate(125.403deg);
+        opacity: 0.5407;
+      "
+    >
+      ❤️
+    </div>
+    <div
+      class="star"
+      style="
+        left: 70.2129vw;
+        top: -30px;
+        font-size: 24.5973px;
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(11.0674px, 150.888px, 0px) rotate(57.7191deg);
+        opacity: 0.5529;
+      "
+    >
+      ✨
+    </div>
+    <div
+      class="balloon"
+      style="
+        left: 71.1865vw;
+        top: -30px;
+        font-size: 27.6951px;
+        filter: hue-rotate(278.247deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-5.1942px, 160.806px, 0px) rotate(65.7839deg);
+        opacity: 0.5529;
+      "
+    >
+      🎈
+    </div>
+    <div
+      class="heart"
+      style="
+        left: 43.6924vw;
+        top: -30px;
+        font-size: 13.5264px;
+        filter: hue-rotate(153.785deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-22.8189px, 247.842px, 0px) rotate(42.1226deg);
+      "
+    >
+      ❤️
+    </div>
+    <div
+      class="heart"
+      style="
+        left: 13.0459vw;
+        top: -30px;
+        font-size: 24.489px;
+        filter: hue-rotate(98.0086deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(13.0688px, 121.791px, 0px) rotate(11.4663deg);
+      "
+    >
+      ❤️
+    </div>
+    <div
+      class="star"
+      style="
+        left: 72.1634vw;
+        top: -30px;
+        font-size: 10.7179px;
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-17.728px, 153.67px, 0px) rotate(18.4916deg);
+      "
+    >
+      ✨
+    </div>
+    <div
+      class="confetti"
+      style="
+        left: 28.1711vw;
+        top: -30px;
+        color: rgb(255, 69, 0);
+        font-size: 23.7012px;
+        transform: translate3d(2.6358px, 158.884px, 0px) rotate(60.6215deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+      "
+    >
+      ♥
+    </div>
+    <div
+      class="confetti"
+      style="
+        left: 20.5382vw;
+        top: -30px;
+        color: rgb(0, 191, 255);
+        font-size: 22.3965px;
+        transform: translate3d(9.0101px, 128.065px, 0px) rotate(-78.4836deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+      "
+    >
+      ♦
+    </div>
+    <div
+      class="confetti"
+      style="
+        left: 74.7827vw;
+        top: -30px;
+        color: rgb(0, 191, 255);
+        font-size: 25.1788px;
+        transform: translate3d(1.3892px, 167.382px, 0px) rotate(131.984deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+      "
+    >
+      ♦
+    </div>
+    <div
+      class="balloon"
+      style="
+        left: 42.5755vw;
+        top: -30px;
+        font-size: 24.6301px;
+        filter: hue-rotate(242.303deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-11.3552px, 158.988px, 0px) rotate(62.2479deg);
+      "
+    >
+      🎈
+    </div>
+    <div
+      class="balloon"
+      style="
+        left: 27.5234vw;
+        top: -30px;
+        font-size: 46.2713px;
+        filter: hue-rotate(151.468deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-20.91px, 221.468px, 0px) rotate(10.4918deg);
+        opacity: 0.7989;
+      "
+    >
+      🎈
+    </div>
+    <div
+      class="confetti"
+      style="
+        left: 32vw;
+        top: -30px;
+        color: rgb(255, 215, 0);
+        font-size: 12.0839px;
+        transform: translate3d(4.1441px, 107.45px, 0px) rotate(-7.3565deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+      "
+    >
+      ★
+    </div>
+    <div
+      class="balloon"
+      style="
+        left: 32.7336vw;
+        top: -30px;
+        font-size: 27.7526px;
+        filter: hue-rotate(72.4303deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(0.5397px, 168.305px, 0px) rotate(3.2145deg);
+      "
+    >
+      🎈
+    </div>
+    <div
+      class="star"
+      style="
+        left: 92.5449vw;
+        top: -30px;
+        font-size: 16.5452px;
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-6.6061px, 154.714px, 0px) rotate(39.9019deg);
+      "
+    >
+      ✨
+    </div>
+    <div
+      class="heart"
+      style="
+        left: 20.1428vw;
+        top: -30px;
+        font-size: 14.996px;
+        filter: hue-rotate(37.179deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-18.5252px, 215.455px, 0px) rotate(44.8084deg);
+      "
+    >
+      ❤️
+    </div>
+    <div
+      class="confetti"
+      style="
+        left: 76.8014vw;
+        top: -30px;
+        color: rgb(138, 43, 226);
+        font-size: 17.3241px;
+        transform: translate3d(4.9294px, 85.688px, 0px) rotate(35.3602deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+      "
+    >
+      ▲
+    </div>
+    <div
+      class="star"
+      style="
+        left: 81.8193vw;
+        top: -30px;
+        font-size: 14.9659px;
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(9.5041px, 90.9112px, 0px) rotate(7.3974deg);
+      "
+    >
+      ✨
+    </div>
+    <div
+      class="heart"
+      style="
+        left: 70.5313vw;
+        top: -30px;
+        font-size: 12.4384px;
+        filter: hue-rotate(202.6deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-7.5613px, 79.2584px, 0px) rotate(2.5147deg);
+      "
+    >
+      ❤️
+    </div>
+    <div
+      class="balloon"
+      style="
+        left: 28.4723vw;
+        top: -30px;
+        font-size: 40.8769px;
+        filter: hue-rotate(179.864deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-7.356px, 68.6286px, 0px) rotate(21.5099deg);
+        opacity: 0.5127;
+      "
+    >
+      🎈
+    </div>
+    <div
+      class="star"
+      style="
+        left: 90.1663vw;
+        top: -30px;
+        font-size: 23.0265px;
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-9.4156px, 97.798px, 0px) rotate(37.4753deg);
+        opacity: 0.5127;
+      "
+    >
+      ✨
+    </div>
+    <div
+      class="star"
+      style="
+        left: 51.0542vw;
+        top: -30px;
+        font-size: 14.6587px;
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-8.7337px, 89.7107px, 0px) rotate(1.0793deg);
+      "
+    >
+      ✨
+    </div>
+    <div
+      class="balloon"
+      style="
+        left: 77.0093vw;
+        top: -30px;
+        font-size: 20.6696px;
+        filter: hue-rotate(117.2deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-2.9245px, 62.4596px, 0px) rotate(24.3811deg);
+      "
+    >
+      🎈
+    </div>
+    <div
+      class="heart"
+      style="
+        left: 69.9843vw;
+        top: -30px;
+        font-size: 15.7437px;
+        filter: hue-rotate(151.182deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-0.2085px, 42.2452px, 0px) rotate(6.6846deg);
+      "
+    >
+      ❤️
+    </div>
+    <div
+      class="heart"
+      style="
+        left: 9.62136vw;
+        top: -30px;
+        font-size: 17.7481px;
+        filter: hue-rotate(218.47deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(4.6881px, 79.0557px, 0px) rotate(14.475deg);
+      "
+    >
+      ❤️
+    </div>
+    <div
+      class="heart"
+      style="
+        left: 7.70911vw;
+        top: -30px;
+        font-size: 28.8909px;
+        filter: hue-rotate(77.7071deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-0.7763px, 22.3991px, 0px) rotate(2.575deg);
+      "
+    >
+      ❤️
+    </div>
+    <div
+      class="heart"
+      style="
+        left: 50.1533vw;
+        top: -30px;
+        font-size: 22.8922px;
+        filter: hue-rotate(57.2393deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-3.2309px, 29.0251px, 0px) rotate(10.5916deg);
+        opacity: 0.7247;
+      "
+    >
+      ❤️
+    </div>
+    <div
+      class="confetti"
+      style="
+        left: 61.116vw;
+        top: -30px;
+        color: rgb(50, 205, 50);
+        font-size: 13.8367px;
+        transform: translate3d(-0.5362px, 47.7004px, 0px) rotate(-79.8295deg);
+        translate: none;
+        rotate: none;
+        scale: none;
+      "
+    >
+      ♥
+    </div>
+    <div
+      class="star"
+      style="
+        left: 81.3248vw;
+        top: -30px;
+        font-size: 12.5191px;
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate3d(-2.8132px, 23.1024px, 0px) rotate(8.3015deg);
+      "
+    >
+      ✨
+    </div>
+  </body>
+</html>
